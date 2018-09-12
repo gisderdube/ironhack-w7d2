@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FoodBox = ({ food }) => {
+const FoodBox = ({ food, handleQtyChange }) => {
     return (
         <div className="box">
             <article className="media">
@@ -20,10 +20,13 @@ const FoodBox = ({ food }) => {
                 <div className="media-right">
                     <div className="field has-addons">
                         <div className="control">
-                            <input className="input" type="number" value={food.quantity} />
-                        </div>
-                        <div className="control">
-                            <button className="button is-info">+</button>
+                            <input
+                                min="0"
+                                className="input"
+                                type="number"
+                                onChange={evt => handleQtyChange(food.name, evt.target.value)}
+                                value={food.quantity}
+                            />
                         </div>
                     </div>
                 </div>

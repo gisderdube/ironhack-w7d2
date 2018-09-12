@@ -1,1 +1,15 @@
 @import './base.scss';
+
+.content-wrapper {
+    display: flex;
+}
+
+.food-list {
+    flex-grow: 1;
+    padding: 25px;
+}
+
+.today {
+    padding: 25px;
+    width: 35%;
+}
