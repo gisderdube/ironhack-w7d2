@@ -11,18 +11,32 @@ class Application extends React.Component {
 
         this.state = {
             foods,
+            query: '',
         }
+
+        this._handleQueryChange = this._handleQueryChange.bind(this)
     }
 
     render() {
-        const mappedFoods = this.state.foods.map((el, index) => <FoodBox key={index} food={el} />)
+        const mappedFoods = this.state.foods
+            .filter((el, index) => {
+                if (el.name.toLowerCase().includes(this.state.query.toLowerCase())) return true
+                return false
+            })
+            .map((el, index) => <FoodBox key={index} food={el} />)
 
         return (
             <div className="container">
-                <Search />
+                <Search query={this.state.query} handleQueryChange={this._handleQueryChange} />
                 <ul>{mappedFoods}</ul>
             </div>
         )
+    }
+
+    _handleQueryChange(event) {
+        this.setState({
+            query: event.target.value,
+        })
     }
 }
 
