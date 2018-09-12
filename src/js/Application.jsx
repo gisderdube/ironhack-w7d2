@@ -19,10 +19,7 @@ class Application extends React.Component {
 
     render() {
         const mappedFoods = this.state.foods
-            .filter((el, index) => {
-                if (el.name.toLowerCase().includes(this.state.query.toLowerCase())) return true
-                return false
-            })
+            .filter((el, index) => el.name.match(new RegExp(`.*${this.state.query}.*`, 'i')))
             .map((el, index) => <FoodBox key={index} food={el} />)
 
         return (
